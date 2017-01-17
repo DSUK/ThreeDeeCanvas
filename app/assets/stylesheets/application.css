@@ -15,3 +15,12 @@
  *= require foundation_and_overrides
 
  */
+.menu-text a:hover {
+  color: grey;
+}
+.menu-text a:not(:hover) {
+  color: white;
+}
+body {
+  margin: 0
+}
