@@ -6,13 +6,13 @@ The end goal is to have an application where you can place objects in space and 
 
 ##Development Goals:
 
-  * ~~Create Staple WebApp using Zurb Foundation and Rails~~
+  * <del>Create Staple WebApp using Zurb Foundation and Rails</del>
 
-  * ~~Create Database storing Transformation matrices and other object properties~~
+  * <del>Create Database storing Transformation matrices and other object properties</del>
 
-  * ~~Create REST API for javascript frontend to interact with the backend~~
+  * <del>Create REST API for javascript frontend to interact with the backend</del>
 
-  * ~~Add WebGL program I created earlier~~
+  * <del>Add WebGL program I created earlier</del>
     * Fix UI Bug whereby the user has to manually select the first created object in order to interact with it
     * Remove AngularJS dependency
 
