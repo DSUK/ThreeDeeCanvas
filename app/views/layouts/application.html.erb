@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
+  
+    <!--TODO: remove angular dependency-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -19,10 +21,7 @@
         </ul>
       </div>
     </div>
-    
-    <div class="row">
-      <%= yield %>
-    </div>
+    <%= yield %>
 
   </body>
 </html>
