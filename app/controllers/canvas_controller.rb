@@ -69,6 +69,8 @@ class CanvasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def canva_params
-      params.fetch(:canva, {}).permit(:name)
+      params.fetch(:canva, {}).permit(:name, polygons_attributes: [:_delete, :id, :diffuse_light, :specular_light,
+        :specular_shininess, :ambiant_light, :red, :green, :blue, transform_matrix: [], normal_matrix: []]
+      )
     end
 end

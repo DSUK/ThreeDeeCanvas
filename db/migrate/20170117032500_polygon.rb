@@ -1,7 +1,7 @@
 class Polygon < ActiveRecord::Migration[5.0]
   def change
     create_table :polygons do |t|
-      t.belongs_to :canvas
+      t.belongs_to :canva
       t.float :diffuse_light
       t.float :specular_light
       t.float :specular_shininess
@@ -18,6 +18,7 @@ class Polygon < ActiveRecord::Migration[5.0]
                                                       0, 1, 0, 0,
                                                       0, 0, 1, 0,
                                                       0, 0, 0, 1 ]
+      t.integer :ploygon_type
     end
   end
 end

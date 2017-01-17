@@ -10,7 +10,7 @@ The end goal is to have an application where you can place objects in space and 
 
   * ~~Create Database storing Transformation matrices and other object properties~~
 
-  * Create REST API for javascript frontend to interact with the backend
+  * ~~Create REST API for javascript frontend to interact with the backend~~
 
   * ~~Add WebGL program I created earlier~~
     * Fix UI Bug whereby the user has to manually select the first created object in order to interact with it

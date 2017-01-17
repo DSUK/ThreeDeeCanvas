@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170117032500) do
   end
 
   create_table "polygons", force: :cascade do |t|
-    t.integer "canvas_id"
+    t.integer "canva_id"
     t.float   "diffuse_light"
     t.float   "specular_light"
     t.float   "specular_shininess"
@@ -32,7 +32,8 @@ ActiveRecord::Schema.define(version: 20170117032500) do
     t.float   "blue"
     t.float   "transform_matrix",   default: [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0], array: true
     t.float   "normal_matrix",      default: [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0], array: true
-    t.index ["canvas_id"], name: "index_polygons_on_canvas_id", using: :btree
+    t.integer "ploygon_type"
+    t.index ["canva_id"], name: "index_polygons_on_canva_id", using: :btree
   end
 
 end

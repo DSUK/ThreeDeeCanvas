@@ -12,124 +12,124 @@
       </ul>
     </div>
   <% end %>
-    <div class="row">
-      <%=f.label :name%>
-      <%=f.text_field :name%>
+
+  <div class="row">
+    <%=f.label :name%>
+    <%=f.text_field :name%>
+  </div>
+  <canvas id="gl-canvas" class="row" width="512" height="512">
+    Your browser doesn't support the HTML5 canvas element!
+  </canvas>
+  <fieldset class="row" class="fieldset" id="fieldset" ng-app="App" ng-controller="attributes">
+    <div class="small-3 columns">
+      <label>Colour</label>
+      <input type="color" max="255" autocomplete="false" ng-model="properties.colour" ng-change="rgberise_colours()"></input><label>{{ properties.colour | uppercase }}</label><br />
     </div>
-    <canvas id="gl-canvas" class="row" width="512" height="512">
-      Your browser doesn't support the HTML5 canvas element!
-    </canvas>
-    <fieldset class="row" class="fieldset" id="fieldset" ng-app="App" ng-controller="attributes">
-      <div class="small-3 columns">
-        <label>Colour</label>
-        <input type="color" max="255" autocomplete="false" ng-model="properties.colour" ng-change="rgberise_colours()"></input><label>{{ properties.colour | uppercase }}</label><br />
-      </div>
 
-      <div class="small-3 columns">
-        <label>x Rotation</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.rotation.x"></input><label>{{ properties.rotation.x }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>y Rotation</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.rotation.y"></input><label>{{ properties.rotation.y }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>z Rotation</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.rotation.z"></input><label>{{ properties.rotation.z }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>x Translate</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.translate.x"></input><label>{{ properties.translate.x }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>y Translate</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.translate.y"></input><label>{{ properties.translate.y }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>z Translate</label>
-        <input type="range" ng-change="update_matrix()" step="any" min="0" max="20"  autocomplete="false" ng-model="properties.translate.z"></input><label>{{ properties.translate.z }}</label><br />
-      </div>
-
-      <!--HACK nbsp to stop div being empty--!>
-      <div class="small-3 columns">&nbsp;</div>
-
-      <div class="small-3 columns">
-        <label>x Scale</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.scale.x"></input><label>{{ properties.scale.x }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>y Scale</label>
-        <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.scale.y"></input><label>{{ properties.scale.y }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>z Scale</label>
-        <input type="range" ng-change="update_matrix()" step="any" min="-5" max="5"  autocomplete="false" ng-model="properties.scale.z"></input><label>{{ properties.scale.z }}</label><br />
-      </div>
-
-      <!--HACK nbsp to stop div being empty--!>
-      <div class="small-3 columns">&nbsp;</div>
-
-      <div class="small-3 columns">
-        <label>Ambiant</label>
-        <input type="range" step="any" min="0" max="1"  autocomplete="false" ng-model="properties.light.ambiant"></input><label>{{ properties.light.ambiant }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>Diffuse</label>
-        <input type="range" step="any" min="0" max="1"  autocomplete="false" ng-model="properties.light.diffuse"></input><label>{{ properties.light.diffuse }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>Specular</label>
-        <input type="range" step="any" min="0" max="1"  autocomplete="false" ng-model="properties.light.specular"></input><label>{{ properties.light.specular }}</label><br />
-      </div>
-
-      <div class="small-3 columns">&nbsp;</div>
-
-      <div class="small-3 columns">
-        <label>Shininess</label>
-        <input type="range" step="any" min="0" max="10"  autocomplete="false" ng-model="properties.light.shininess"></input><label>{{ properties.light.shininess }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>Light One</label>
-        <input type="range" step="any" min="0" max="1" oninput="change_light_one(this.value)"  autocomplete="false" ng-model="properties.lighting.first"></input><label>{{ properties.lighting.first }}</label><br />
-      </div>
-
-      <div class="small-3 columns">
-        <label>Light Two</label>
-        <input type="range" step="any" min="0" max="1" oninput="change_light_two(this.value)"  autocomplete="false" ng-model="properties.lighting.second"></input><label>{{ properties.lighting.second }}</label><br />
-      </div>
-
-      <div class="small-4 columns">
-        <select autocomplete="false" ng-model="properties.shape_type">
-          <option value="0">Cube</option>
-          <option value="1">Cylinder</option>
-          <option value="2">Cone</option>
-        </select>
-      </div>
-      <div class="small-4 columns">
-        <select id="dd" autocomplete="false" ng-model="shape_select" size="8"  ng-change="change_shape(this.shape_select)">
-          <option ng-repeat="shape in shapes track by $index" value="{{$index}}">
-            {{ ["Cube","Cylinder","Cone"][+shape.shape_type]  }}
-          </option>
-        </select>
-      </div>
-      <div class="small-4 columns">
-        <button ng_click="add_shape()">Add Shape</button>
-        <button ng-click="clear_all()">Clear Shapes</button>
-      </div>
-    </fieldset>
-
-
-    <div class="actions">
-      <%= f.submit %>
+    <div class="small-3 columns">
+      <label>x Rotation</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.rotation.x"></input><label>{{ properties.rotation.x }}</label><br />
     </div>
+
+    <div class="small-3 columns">
+      <label>y Rotation</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.rotation.y"></input><label>{{ properties.rotation.y }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>z Rotation</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.rotation.z"></input><label>{{ properties.rotation.z }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>x Translate</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.translate.x"></input><label>{{ properties.translate.x }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>y Translate</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.translate.y"></input><label>{{ properties.translate.y }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>z Translate</label>
+      <input type="range" ng-change="update_matrix()" step="any" min="0" max="20"  autocomplete="false" ng-model="properties.translate.z"></input><label>{{ properties.translate.z }}</label><br />
+    </div>
+
+    <!--HACK nbsp to stop div being empty--!>
+    <div class="small-3 columns">&nbsp;</div>
+
+    <div class="small-3 columns">
+      <label>x Scale</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.scale.x"></input><label>{{ properties.scale.x }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>y Scale</label>
+      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.scale.y"></input><label>{{ properties.scale.y }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>z Scale</label>
+      <input type="range" ng-change="update_matrix()" step="any" min="-5" max="5"  autocomplete="false" ng-model="properties.scale.z"></input><label>{{ properties.scale.z }}</label><br />
+    </div>
+
+    <!--HACK nbsp to stop div being empty--!>
+    <div class="small-3 columns">&nbsp;</div>
+
+    <div class="small-3 columns">
+      <label>Ambiant</label>
+      <input type="range" step="any" min="0" max="1"  autocomplete="false" ng-model="properties.light.ambiant"></input><label>{{ properties.light.ambiant }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>Diffuse</label>
+      <input type="range" step="any" min="0" max="1"  autocomplete="false" ng-model="properties.light.diffuse"></input><label>{{ properties.light.diffuse }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>Specular</label>
+      <input type="range" step="any" min="0" max="1"  autocomplete="false" ng-model="properties.light.specular"></input><label>{{ properties.light.specular }}</label><br />
+    </div>
+
+    <div class="small-3 columns">&nbsp;</div>
+
+    <div class="small-3 columns">
+      <label>Shininess</label>
+      <input type="range" step="any" min="0" max="10"  autocomplete="false" ng-model="properties.light.shininess"></input><label>{{ properties.light.shininess }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>Light One</label>
+      <input type="range" step="any" min="0" max="1" oninput="change_light_one(this.value)"  autocomplete="false" ng-model="properties.lighting.first"></input><label>{{ properties.lighting.first }}</label><br />
+    </div>
+
+    <div class="small-3 columns">
+      <label>Light Two</label>
+      <input type="range" step="any" min="0" max="1" oninput="change_light_two(this.value)"  autocomplete="false" ng-model="properties.lighting.second"></input><label>{{ properties.lighting.second }}</label><br />
+    </div>
+
+    <div class="small-4 columns">
+      <select autocomplete="false" ng-model="properties.shape_type">
+        <option value="0">Cube</option>
+        <option value="1">Cylinder</option>
+        <option value="2">Cone</option>
+      </select>
+    </div>
+    <div class="small-4 columns">
+      <select id="dd" autocomplete="false" ng-model="shape_select" size="8"  ng-change="change_shape(this.shape_select)">
+        <option ng-repeat="shape in shapes track by $index" value="{{$index}}">
+          {{ ["Cube","Cylinder","Cone"][+shape.shape_type]  }}
+        </option>
+      </select>
+    </div>
+    <div class="small-4 columns">
+      <button ng_click="add_shape()">Add Shape</button>
+      <button ng-click="clear_all()">Clear Shapes</button>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
