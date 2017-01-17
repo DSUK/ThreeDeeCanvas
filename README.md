@@ -6,7 +6,7 @@ The end goal is to have an application where you can place objects in space and 
 
 ##Development Goals:
 
-	* Create Staple WebApp using Zurb Foundation and Rails
+	* ~~Create Staple WebApp using Zurb Foundation and Rails~~
 
 	* Create Database storing Transformation matrices and other object properties
 
