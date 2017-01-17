@@ -1,0 +1,52 @@
+<script id="fragment-shader" type="x-shader/x-fragment">
+  precision mediump float;
+  varying vec4 position;
+  varying vec4 normal;
+  uniform float light_one;
+  uniform float light_two;
+  uniform float ambiant;
+  uniform float mat_diffuse;
+  uniform float mat_specular;
+  uniform float shininess;
+  uniform float light_angle;
+
+  uniform vec3 fColour;
+
+  void
+  main()
+  {
+    vec3 colour = fColour.rgb/255.0;
+    vec2 Lyz = vec2(sin(light_angle),cos(light_angle));
+    
+
+    //diffuse
+    vec3 obj_to_light = vec3(Lyz.y,1.0,-2.0*Lyz.x) - position.xyz;
+
+    float attenuation =1.0 + 0.1*length(obj_to_light)*length(obj_to_light);
+    float cosine = dot(normalize(obj_to_light),normalize(normal.xyz));
+    float diffuse = max(cosine*light_one*mat_diffuse,0.0)/attenuation;
+    
+    vec3 reflection = normalize(reflect(obj_to_light, normal.xyz));
+    //note viewer is always at (0,0,0) ergo -normalize(position) = object_to_viewer
+    cosine = dot(reflection,normalize(position.xyz));
+    float specular = pow(max(cosine*mat_specular*light_one,0.0),shininess)/attenuation;
+    
+    
+    obj_to_light = vec3(1.0,Lyz.x,2.0*Lyz.y) - position.xyz;
+    attenuation =1.0 + 0.1*length(obj_to_light)*length(obj_to_light);
+    cosine = dot(normalize(obj_to_light),normalize(normal.xyz));
+    diffuse += max(cosine*light_two*mat_diffuse,0.0)/attenuation;
+
+    reflection = normalize(reflect(obj_to_light, normal.xyz));
+    //note viewer is always at (0,0,0) ergo -normalize(position) = object_to_viewer
+    cosine = dot(reflection,normalize(position.xyz));
+    specular += pow(max(cosine*mat_specular*light_one,0.0),shininess)/attenuation;
+    
+    specular /= 2.0;
+    vec3 out_colour = colour*(ambiant + diffuse + specular);
+    
+
+    //gl_FragColor = vec4(fColour/255.0, 1.0);
+    gl_FragColor = vec4(out_colour,1.0);
+  }
+</script>

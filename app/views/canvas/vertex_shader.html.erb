@@ -1,0 +1,14 @@
+<script id="vertex-shader" type="x-shader/x-vertex">
+  attribute  vec4 vNormal;
+  attribute  vec4 vPosition;
+  varying vec4 position;
+  varying vec4 normal;
+  uniform mat4 NormalMatrix;
+  uniform mat4 ProjectionMatrix;
+  uniform mat4 modelViewMatrix;
+  void main() {
+    normal = NormalMatrix*vNormal;
+    position = modelViewMatrix*vPosition;
+    gl_Position = ProjectionMatrix*position;
+  } 
+</script>
