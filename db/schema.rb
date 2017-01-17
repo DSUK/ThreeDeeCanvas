@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117003359) do
+ActiveRecord::Schema.define(version: 20170117032500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20170117003359) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "polygons", force: :cascade do |t|
+    t.integer "canvas_id"
+    t.float   "diffuse_light"
+    t.float   "specular_light"
+    t.float   "specular_shininess"
+    t.float   "ambiant_light"
+    t.float   "red"
+    t.float   "green"
+    t.float   "blue"
+    t.float   "transform_matrix",   default: [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0], array: true
+    t.float   "normal_matrix",      default: [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0], array: true
+    t.index ["canvas_id"], name: "index_polygons_on_canvas_id", using: :btree
   end
 
 end
