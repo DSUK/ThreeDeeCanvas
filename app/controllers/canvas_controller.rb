@@ -28,7 +28,7 @@ class CanvasController < ApplicationController
 
     respond_to do |format|
       if @canva.save
-        format.html { redirect_to @canva, notice: 'Canva was successfully created.' }
+        format.html { redirect_to Canva, notice: 'Canva was successfully created.' }
         format.json { render :show, status: :created, location: @canva }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class CanvasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def canva_params
-      params.fetch(:canva, {})
+      params.fetch(:canva, {}).permit(:name)
     end
 end

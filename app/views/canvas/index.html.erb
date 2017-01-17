@@ -5,16 +5,15 @@
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="2">Canvas</th>
     </tr>
   </thead>
 
   <tbody>
     <% @canvas.each do |canva| %>
       <tr>
-        <td><%= link_to 'Show', canva %></td>
-        <td><%= link_to 'Edit', edit_canva_path(canva) %></td>
-        <td><%= link_to 'Destroy', canva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to canva.name, edit_canva_path(canva) %></td>
+        <td><%= link_to 'X', canva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
