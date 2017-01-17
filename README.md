@@ -1,24 +1,20 @@
-# README
+# Three dee canvas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a demo project to combine my trade ( Ruby on Rails ) with a personal intrest ( Open/WebGL )
 
-Things you may want to cover:
+The end goal is to have an application where you can place objects in space and save it as a "Canvas" ( Lacking a better word )
 
-* Ruby version
+##Development Goals:
 
-* System dependencies
+	* Create Staple WebApp using Zurb Foundation and Rails
 
-* Configuration
+	* Create Database storing Transformation matrices and other object properties
 
-* Database creation
+	* Create REST API for javascript frontend to interact with the backend
 
-* Database initialization
+	* Add WebGL program I created earlier
+	  * Fix UI Bug whereby the user has to manually select the first created object in order to interact with it
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+	* Edit WebGL program to interact with the REST API to
+		* Submit State
+		* Fetch State
