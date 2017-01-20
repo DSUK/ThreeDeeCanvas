@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require foundation
 //  require turbolinks //causes problems with angular
-//= require_tree .
+//= require canvas
+//= require canvas_view
+//  require_tree .
 
 $(function(){ $(document).foundation(); });

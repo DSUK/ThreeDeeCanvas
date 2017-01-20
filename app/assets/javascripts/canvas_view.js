@@ -86,5 +86,4 @@ function create_matrix(properties) {
 	properties._matrix = mult(mult(translation,scale),RotZXY);
 	properties._normal_matrix = flatten(transpose(inverse(properties._matrix)));
 	properties._matrix = flatten(properties._matrix);
-	console.log(properties._normal_matrix);
 }

@@ -16,8 +16,9 @@
   <div class="row">
     <%=f.label :name%>
     <%=f.text_field :name%>
+    <%=f.hidden_field :id%>
   </div>
-  <canvas id="gl-canvas" class="row" width="512" height="512">
+  <canvas id="gl-canvas" class="row" >
     Your browser doesn't support the HTML5 canvas element!
   </canvas>
   <fieldset class="row" class="fieldset" id="fieldset" ng-app="App" ng-controller="attributes">
@@ -43,7 +44,7 @@
 
     <div class="small-3 columns">
       <label>x Translate</label>
-      <input type="range" ng-change="update_matrix()" step="any" min ="-5" max="5"  autocomplete="false" ng-model="properties.translate.x"></input><label>{{ properties.translate.x }}</label><br />
+      <input type="range" ng-change="update_matrix()" step="any" min ="-7" max="7"  autocomplete="false" ng-model="properties.translate.x"></input><label>{{ properties.translate.x }}</label><br />
     </div>
 
     <div class="small-3 columns">
@@ -117,7 +118,7 @@
       </select>
     </div>
     <div class="small-4 columns">
-      <select id="dd" autocomplete="false" ng-model="shape_select" size="8"  ng-change="change_shape(this.shape_select)">
+      <select id="dd" autocomplete="false" ng-model="shape_select" size="8"  ng-change="change_shape(this.shape_select)" style="height: 8rem">
         <option ng-repeat="shape in shapes track by $index" value="{{$index}}">
           {{ ["Cube","Cylinder","Cone"][+shape.shape_type]  }}
         </option>

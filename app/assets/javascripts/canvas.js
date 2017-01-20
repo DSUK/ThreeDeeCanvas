@@ -135,6 +135,8 @@ var draw_current = [draw_cube, draw_cylinder, draw_cone];
 
 window.onload = function init()
 {
+  get_data_state();
+
 	var canvas = document.getElementById( "gl-canvas" );
 
 	$gl = WebGLUtils.setupWebGL( canvas );
@@ -291,13 +293,9 @@ function debug_render() {
 		for(var j = 0; j < 4; ++j) {
 			output_vec[j] = output_vec[j]/output_vec[3];
 		}
-
 	}
-
-
-
-
 }
+
 function mat_vec_mul(mat,vec) {
 	var ret = [0,0,0,0];
 	for(var i = 0; i < 4; ++i) {
@@ -309,4 +307,55 @@ function mat_vec_mul(mat,vec) {
 	}
 	return ret;
 }
+var $canvas_id;
 //TODO: REST API to add and take from $shapes
+function get_data_state() {
+	$canvas_id = +$("#canva_id").val();
+	$.get("/canvas/" + $canvas_id + ".json", function(data) {
+
+	for(var i = 0; i < data.polygons.length; i++) {
+		var properties = data.polygons[i];
+		//console.log(properties);
+		var scale = mat4(
+			+properties.scale.x, 0.0, 0.0, 0.0,
+			0.0, +properties.scale.y, 0.0, 0.0,
+			0.0, 0.0, +properties.scale.z, 0.0,
+			0.0, 0.0, 0.0, 1.0
+		);
+		var translation = mat4(
+			1.0, 0.0, 0.0, +properties.translate.x,
+			0.0, 1.0, 0.0, +properties.translate.y,
+			0.0, 0.0, 1.0, +properties.translate.z,
+			0.0, 0.0, 0.0, 1.0
+		);
+
+		var S = vec3(Math.sin(+properties.rotation.x), Math.sin(+properties.rotation.y), Math.sin(+properties.rotation.z));
+		var C = vec3(Math.cos(+properties.rotation.x), Math.cos(+properties.rotation.y), Math.cos(+properties.rotation.z));
+      var RotZXY = mult(
+        mult(
+          mat4(
+            C[2],-S[2], 0.0, 0.0,
+            S[2], C[2], 0.0, 0.0,
+            0.0, 0.0, 1.0, 0.0,
+            0.0, 0.0, 0.0, 1.0
+          ),mat4(
+            1.0, 0.0, 0.0, 0.0,
+            0.0, C[0],-S[0], 0.0,
+            0.0, S[0], C[0], 0.0,
+            0.0, 0.0, 0.0, 1.0
+          )
+        ),mat4(
+          C[1], 0.0, S[1], 0.0,
+          0.0, 1.0, 0.0, 0.0,
+          -S[1],0.0, C[1], 0.0,
+          0.0, 0.0, 0.0, 1.0
+        )
+      );
+      properties._matrix = mult(mult(translation,scale),RotZXY);
+      properties._normal_matrix = flatten(transpose(inverse(properties._matrix)));
+      properties._matrix = flatten(properties._matrix);
+      $shapes.push(properties);
+      console.log("test2 : " + properties.shape_type);
+    }
+  });
+}

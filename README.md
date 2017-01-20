@@ -14,6 +14,7 @@ The end goal is to have an application where you can place objects in space and 
 
   * <del>Add WebGL program I created earlier</del>
     * Fix UI Bug whereby the user has to manually select the first created object in order to interact with it
+    * Fix Missing Triangle on Cube
     * Remove AngularJS dependency
 
   * Edit WebGL program to interact with the REST API to
