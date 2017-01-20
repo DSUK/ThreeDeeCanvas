@@ -1,4 +1,4 @@
-# Three dee canvas
+# Three dee canvas (WIP)
 
 This is a demo project to combine my trade ( Ruby on Rails ) with a personal intrest ( Open/WebGL )
 
